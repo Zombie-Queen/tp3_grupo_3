@@ -35,7 +35,26 @@ public class App
     	autor.setEmail("test@test.com");
     	
     	session.save(autor); 
+	    
+	 /* Santiago Cirone */   	
+    	Nacionalidad nacionalidad = new Nacionalidad();
+    	nacionalidad.setDescripcion("Argentina");
     	
+    	nacionalidad = new Nacionalidad();
+    	nacionalidad.setDescripcion("Mexico");
+    	
+    	nacionalidad = new Nacionalidad();
+    	nacionalidad.setDescripcion("Uruguay");
+    	
+    	nacionalidad = new Nacionalidad();
+    	nacionalidad.setDescripcion("Paraguay");
+    	
+    	nacionalidad = new Nacionalidad();
+    	nacionalidad.setDescripcion("Bolivia");
+    	
+    	session.save(nacionalidad);    
+    	/****************************/
+	    
     	session.getTransaction().commit();
     	session.close();
     	
