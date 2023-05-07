@@ -12,6 +12,12 @@
         <property name="show_sql">true</property> 
         <property name="hbm2ddl.auto">create</property>
         <mapping class="UTNFRGP.tp3_grupo_3.entidad.Autor" />
+	    
+	 <mapping class="UTNFRGP.tp3_grupo_3.entidad.Nacionalidad" />
+         <mapping class="UTNFRGP.tp3_grupo_3.entidad.Biblioteca" />
+         <mapping class="UTNFRGP.tp3_grupo_3.entidad.Genero" />
+         <mapping class="UTNFRGP.tp3_grupo_3.entidad.Libro" />
+	    
     </session-factory>
 </hibernate-configuration>
 
