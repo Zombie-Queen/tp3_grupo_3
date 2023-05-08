@@ -25,7 +25,7 @@ public class Biblioteca implements Serializable {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column (name = "id")
-    private Long id;
+    private int id;
 
     @OneToMany(cascade=CascadeType.ALL)
     @Column (name = "Libro")
@@ -46,11 +46,11 @@ public class Biblioteca implements Serializable {
         this.estado = estado;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

@@ -1,5 +1,6 @@
 package UTNFRGP.tp3_grupo_3;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -10,9 +11,11 @@ import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
 
 import UTNFRGP.tp3_grupo_3.entidad.Autor;
+import UTNFRGP.tp3_grupo_3.entidad.Biblioteca;
 import UTNFRGP.tp3_grupo_3.entidad.Genero;
 import UTNFRGP.tp3_grupo_3.entidad.Libro;
 import UTNFRGP.tp3_grupo_3.entidad.Nacionalidad;
+import dao.daoHibernate;
 
 /**
  *Tp 3
@@ -174,11 +177,57 @@ public class App
        	session.save(libro3);    
        	session.save(libro4);    
        	session.save(libro5);  
-	    
+       	
+       	Biblioteca biblioteca1 = new Biblioteca();       	
+       	biblioteca1.setEstado(1);
+       	biblioteca1.setFechaAlta(new Date());
+       	session.save(biblioteca1);
+       	
+       	biblioteca1 = new Biblioteca();       	
+       	biblioteca1.setEstado(2);
+       	biblioteca1.setFechaAlta(new Date());
+       	session.save(biblioteca1);
+       	
+       	biblioteca1 = new Biblioteca();       	
+       	biblioteca1.setEstado(2);
+       	biblioteca1.setFechaAlta(new Date());
+       	session.save(biblioteca1);
+       	
+       	biblioteca1 = new Biblioteca();       	
+       	biblioteca1.setEstado(1);
+       	biblioteca1.setFechaAlta(new Date());
+       	session.save(biblioteca1);
+       	
+       	biblioteca1 = new Biblioteca();       	
+       	biblioteca1.setEstado(2);
+       	biblioteca1.setFechaAlta(new Date());
+       	session.save(biblioteca1);
+       	
     	session.getTransaction().commit();
     	session.close();
     	
     	sessionFactory.close();
+    	
+    	
+    	/*ABML TABLA BIBLIOTECA*/
+    	
+       	Biblioteca bibliotecaABML = new Biblioteca();
+       	
+       	bibliotecaABML.setEstado(1);
+       	bibliotecaABML.setFechaAlta(new Date());
+    	
+    	daoHibernate.Add(bibliotecaABML);
+    	Biblioteca biblioteca = daoHibernate.ReadOne(6);
+    	System.out.println("Biblioteca con Id"+biblioteca.getId()+": " + biblioteca);
+    	
+       	Biblioteca bibliotecaABML1 = new Biblioteca();
+       	bibliotecaABML1.setId(6);
+    	bibliotecaABML1.setEstado(2);
+    	daoHibernate.Update(bibliotecaABML);
+    	biblioteca = daoHibernate.ReadOne(1);
+    	System.out.println("Biblioteca con Id"+biblioteca.getId()+" actualizada: " + biblioteca);
+    	daoHibernate.Delete(bibliotecaABML);
+    	       
     	
     	
     	/* */

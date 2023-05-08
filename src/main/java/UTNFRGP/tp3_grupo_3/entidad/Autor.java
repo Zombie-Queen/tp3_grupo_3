@@ -20,7 +20,7 @@ public class Autor implements Serializable{
 	
 	@Id
 	@Column
-	@GeneratedValue(strategy = GenerationType.AUTO) 
+	@GeneratedValue(strategy = GenerationType.IDENTITY) 
 	private int id;
 	
 	@Column

@@ -33,13 +33,13 @@ public class Libro implements Serializable {
 
     @Column
     private String cantidadPaginas;
+      
+    @Column
+    private String descripcion;
 
     @ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "idAutor")
     private Autor idAutor;
-    
-    @Column
-    private String descripcion;
     
 	@ManyToMany(cascade= (CascadeType.ALL))
 	@JoinTable(name="Libros_x_genero",joinColumns= {@JoinColumn(name="isbn")}, inverseJoinColumns= {@JoinColumn(name="idgenero")})
