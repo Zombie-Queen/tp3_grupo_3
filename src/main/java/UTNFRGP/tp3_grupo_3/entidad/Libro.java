@@ -1,15 +1,23 @@
 package UTNFRGP.tp3_grupo_3.entidad;
 
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import java.io.Serializable;
-import java.util.List;
 
 @Entity
 @Table(name="Libro")
 public class Libro implements Serializable {
+	
     @Id
     @Column
     private String isbn;
@@ -26,8 +34,20 @@ public class Libro implements Serializable {
     @Column
     private String cantidadPaginas;
 
+    @ManyToOne(cascade = {CascadeType.ALL})
+    @JoinColumn(name = "idAutor")
+    private Autor idAutor;
+    
     @Column
-    private String autor;
+    private String descripcion;
+    
+	@ManyToMany(cascade= (CascadeType.ALL))
+	@JoinTable(name="Libros_x_genero",joinColumns= {@JoinColumn(name="isbn")}, inverseJoinColumns= {@JoinColumn(name="idgenero")})
+	private Set<Genero> genero = new HashSet<Genero>();
+   
+    
+    @Column
+    private Biblioteca biblioteca;
 
     public String getIsbn() {
         return isbn;
@@ -69,15 +89,16 @@ public class Libro implements Serializable {
         this.cantidadPaginas = cantidadPaginas;
     }
 
-    public String getAutor() {
-        return autor;
-    }
 
-    public void setAutor(String autor) {
-        this.autor = autor;
-    }
+    public Autor getIdAutor() {
+		return idAutor;
+	}
 
-    public String getDescripcion() {
+	public void setIdAutor(Autor idAutor) {
+		this.idAutor = idAutor;
+	}
+
+	public String getDescripcion() {
         return descripcion;
     }
 
@@ -85,37 +106,46 @@ public class Libro implements Serializable {
         this.descripcion = descripcion;
     }
 
-    public List<Genero> getGenero() {
-        return genero;
-    }
 
-    public void setGenero(List<Genero> genero) {
-        this.genero = genero;
-    }
-
-    public Biblioteca getBiblioteca() {
+	public Biblioteca getBiblioteca() {
         return biblioteca;
     }
 
     public void setBiblioteca(Biblioteca biblioteca) {
         this.biblioteca = biblioteca;
     }
+    
+	public Libro() {
 
-    private String descripcion;
-    private List<Genero> genero;
-    private Biblioteca biblioteca;
+	}
 
-    public Libro(String isbn, String titulo, String fechaLanzamiento, String idioma, String cantidadPaginas, String autor, String descripcion, List<Genero> genero, Biblioteca biblioteca) {
-        this.isbn = isbn;
-        this.titulo = titulo;
-        this.fechaLanzamiento = fechaLanzamiento;
-        this.idioma = idioma;
-        this.cantidadPaginas = cantidadPaginas;
-        this.autor = autor;
-        this.descripcion = descripcion;
-        this.genero = genero;
-        this.biblioteca = biblioteca;
-    }
+	public Set<Genero> getGenero() {
+		return genero;
+	}
+
+	public void setGenero(Set<Genero> genero) {
+		this.genero = genero;
+	}
+
+	public Libro(String isbn, String titulo, String fechaLanzamiento, String idioma, String cantidadPaginas,
+			Autor idAutor, String descripcion, Set<Genero> genero, Biblioteca biblioteca) {
+		super();
+		this.isbn = isbn;
+		this.titulo = titulo;
+		this.fechaLanzamiento = fechaLanzamiento;
+		this.idioma = idioma;
+		this.cantidadPaginas = cantidadPaginas;
+		this.idAutor = idAutor;
+		this.descripcion = descripcion;
+		this.genero = genero;
+		this.biblioteca = biblioteca;
+	}
+
+
+
+
+
+
 
 
 }

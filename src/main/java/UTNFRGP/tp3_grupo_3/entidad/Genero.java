@@ -15,53 +15,53 @@ import javax.persistence.Table;
 @Table(name="Genero")
 public class Genero implements Serializable {
 
-@Id
-@Column
-@GeneratedValue(strategy = GenerationType.AUTO)
-private int idgenero;
+	@Id
+	@Column
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int idgenero;
 
-@Column
-private String descripción;
+	@Column
+	private String descripción;
+	
+	
+	public Genero()
+	{
+	
+	}
+	
+	
+	public int getIdgenero() {
+		return idgenero;
+	}
 
-@ManyToMany(cascade= (CascadeType.ALL))
-private HashSet listaLibros= new HashSet;
 
-@JoinTable(name="Libros_x_genero",joinColumns= {@JoinCoumn(name="idgenero")}, inverseJoinColumn= {@JoinColumn(name="idlibro")})
+	public void setIdgenero(int idgenero) {
+		this.idgenero = idgenero;
+	}
 
-public Genero()
-{
+
+	public Genero(int idgenero, String descripción) {
+		super();
+		this.idgenero = idgenero;
+		this.descripción = descripción;
+	}
+
+
+	public String getDescripción() {
+	return descripción;
+	}
+	
+	public void setDescripción(String descripción) {
+	this.descripción = descripción;
+	}
+	
+	
+	@Override
+	public String toString() {
+	return "Genero [idgenero=" + idgenero + ", descripción=" + descripción + "]";
+	}
+	
+	
 
 }
 
-
-public HashSet getListaLibros() {
-return listaLibros;
-}
-
-
-public void setListaLibros(HashSet listaLibros) {
-this.listaLibros = listaLibros;
-}
-
-
-public String getDescripción() {
-return descripción;
-}
-
-public void setDescripción(String descripción) {
-this.descripción = descripción;
-}
-
-
-@Override
-public String toString() {
-return "Genero [idgenero=" + idgenero + ", descripción=" + descripción + "]";
-}
-
-
-
-}
-
-
-
-}

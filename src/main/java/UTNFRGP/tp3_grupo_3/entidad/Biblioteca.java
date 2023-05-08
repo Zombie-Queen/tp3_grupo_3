@@ -1,9 +1,10 @@
 package UTNFRGP.tp3_grupo_3.entidad;
 
-import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,6 +12,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 
 @Entity
@@ -24,7 +27,7 @@ public class Biblioteca implements Serializable {
     @Column (name = "id")
     private Long id;
 
-    @OneToMany(mappedBy="biblioteca", cascade=CascadeType.ALL)
+    @OneToMany(cascade=CascadeType.ALL)
     @Column (name = "Libro")
     private List<Libro> libro;
 

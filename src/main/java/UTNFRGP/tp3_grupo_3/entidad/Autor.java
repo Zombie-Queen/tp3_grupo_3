@@ -2,11 +2,14 @@ package UTNFRGP.tp3_grupo_3.entidad;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -26,8 +29,9 @@ public class Autor implements Serializable{
 	@Column
 	private String apellido;
 	
-	@Column
-	private String nacionalidad;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "nacionalidad")
+    private Nacionalidad nacionalidad;
 	
 	@Column
 	private String email;
@@ -36,6 +40,15 @@ public class Autor implements Serializable{
 		
 	}
 	
+	public Autor(int id, String nombre, String apellido, Nacionalidad nacionalidad, String email) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.nacionalidad = nacionalidad;
+		this.email = email;
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -56,11 +69,11 @@ public class Autor implements Serializable{
 		this.apellido = apellido;
 	}
 
-	public String getNacionalidad() {
+	public Nacionalidad getNacionalidad() {
 		return nacionalidad;
 	}
 
-	public void setNacionalidad(String nacionalidad) {
+	public void setNacionalidad(Nacionalidad nacionalidad) {
 		this.nacionalidad = nacionalidad;
 	}
 
