@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -28,7 +29,7 @@ public class Biblioteca implements Serializable {
     private int id;
 
     @OneToMany(cascade=CascadeType.ALL)
-    @Column (name = "Libro")
+    @JoinColumn (name = "Libro")
     private List<Libro> libro;
 
     @Temporal(TemporalType.TIMESTAMP)
@@ -79,12 +80,7 @@ public class Biblioteca implements Serializable {
     }
 
     @Override
-    public String toString() {
-        return "Biblioteca{" +
-                "id=" + id +
-                ", libro=" + libro +
-                ", fechaAlta=" + fechaAlta +
-                ", estado='" + estado + '\'' +
-                '}';
-    }
+	public String toString() {
+		return "Biblioteca [id=" + id + ", libro=" + libro + ", fechaAlta=" + fechaAlta + ", estado=" + estado + "]";
+	}
 }
