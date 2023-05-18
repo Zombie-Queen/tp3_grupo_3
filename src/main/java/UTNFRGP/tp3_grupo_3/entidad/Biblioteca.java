@@ -1,6 +1,7 @@
 package UTNFRGP.tp3_grupo_3.entidad;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -28,21 +29,15 @@ public class Biblioteca implements Serializable {
     @Column (name = "id")
     private int id;
 
-    @OneToMany(cascade=CascadeType.ALL)
-    @JoinColumn (name = "Libro")
-    private List<Libro> libro;
-
-    @Temporal(TemporalType.TIMESTAMP)
     @Column (name = "fechaAlta")
-    private Date fechaAlta;
+    private String fechaAlta;
 
     @Column (name = "estado")	
     private int estado;
 
     public Biblioteca() {}
 
-    public Biblioteca(List<Libro> libro, Date fechaAlta, int estado) {
-        this.libro = libro;
+    public Biblioteca(String fechaAlta, int estado) {
         this.fechaAlta = fechaAlta;
         this.estado = estado;
     }
@@ -55,19 +50,11 @@ public class Biblioteca implements Serializable {
         this.id = id;
     }
 
-    public List<Libro> getLibro() {
-        return libro;
-    }
-
-    public void setLibro(List<Libro> libro) {
-        this.libro = libro;
-    }
-
-    public Date getFechaAlta() {
+    public String getFechaAlta() {
         return fechaAlta;
     }
 
-    public void setFechaAlta(Date fechaAlta) {
+    public void setFechaAlta(String fechaAlta) {
         this.fechaAlta = fechaAlta;
     }
 
@@ -81,6 +68,6 @@ public class Biblioteca implements Serializable {
 
     @Override
 	public String toString() {
-		return "Biblioteca [id=" + id + ", libro=" + libro + ", fechaAlta=" + fechaAlta + ", estado=" + estado + "]";
+		return "Biblioteca [id=" + id + ", fechaAlta=" + fechaAlta + ", estado=" + estado + "]";
 	}
 }

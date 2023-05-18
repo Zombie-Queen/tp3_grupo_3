@@ -40,14 +40,15 @@ public class Libro implements Serializable {
     @ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "idAutor")
     private Autor idAutor;
-    
+
+    @ManyToOne(cascade = {CascadeType.ALL})
+    @JoinColumn(name = "idBiblioteca")
+    private Biblioteca idBiblioteca;
+   
+
 	@ManyToMany(cascade= (CascadeType.ALL))
 	@JoinTable(name="Libros_x_genero",joinColumns= {@JoinColumn(name="isbn")}, inverseJoinColumns= {@JoinColumn(name="idgenero")})
 	private Set<Genero> genero = new HashSet<Genero>();
-   
-    
-    @Column
-    private Biblioteca biblioteca;
 
     public String getIsbn() {
         return isbn;
@@ -105,15 +106,6 @@ public class Libro implements Serializable {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-
-
-	public Biblioteca getBiblioteca() {
-        return biblioteca;
-    }
-
-    public void setBiblioteca(Biblioteca biblioteca) {
-        this.biblioteca = biblioteca;
-    }
     
 	public Libro() {
 
@@ -125,6 +117,14 @@ public class Libro implements Serializable {
 
 	public void setGenero(Set<Genero> genero) {
 		this.genero = genero;
+	}
+	
+	public Biblioteca getIdBiblioteca() {
+		return idBiblioteca;
+	}
+
+	public void setIdBiblioteca(Biblioteca idBiblioteca) {
+		this.idBiblioteca = idBiblioteca;
 	}
 
 	public Libro(String isbn, String titulo, String fechaLanzamiento, String idioma, String cantidadPaginas,
@@ -138,7 +138,7 @@ public class Libro implements Serializable {
 		this.idAutor = idAutor;
 		this.descripcion = descripcion;
 		this.genero = genero;
-		this.biblioteca = biblioteca;
+		this.idBiblioteca = biblioteca;
 	}
 
 
