@@ -15,7 +15,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="Libro")
+@Table(name="Libros")
 public class Libro implements Serializable {
 	
     @Id
@@ -139,4 +139,18 @@ public class Libro implements Serializable {
         this.genero = genero;
     }
 
+    @Override
+    public String toString() {
+        return "Libro{" +
+                "isbn='" + isbn + '\'' +
+                ", titulo='" + titulo + '\'' +
+                ", fechaLanzamiento='" + fechaLanzamiento + '\'' +
+                ", idioma='" + idioma + '\'' +
+                ", cantidadPaginas='" + cantidadPaginas + '\'' +
+                ", descripcion='" + descripcion + '\'' +
+                ", idAutor=" + idAutor +
+                ", idBiblioteca=" + idBiblioteca +
+                ", genero=" + genero +
+                '}';
+    }
 }
