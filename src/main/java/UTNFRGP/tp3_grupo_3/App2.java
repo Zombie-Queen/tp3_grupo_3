@@ -31,7 +31,8 @@ public class App2
     {
 
     	
-    	OrderedBooksDesc();
+    	//OrderedBooksDesc();
+    	BorrowedBooks();
     	
     }
     
@@ -65,6 +66,34 @@ public class App2
         	  + ", Idioma: " + libro.getIdioma() + ", Cantidad de paginas: " + libro.getCantidadPaginas() + ", Autor: " + autor.getId() + ", Nombre: "
         	  + autor.getNombre() + ", Apellido: " + autor.getApellido() + ", Email: " + autor.getEmail() + ", Nacionalidad: " + nac.getId() + 
         	  ", Descripcion Nacionalidad: " + nac.getDescripcion() + ", Descripcion Libro: " + libro.getDescripcion() + ", Genero: " + gen.toString());
+		}
+        
+        ch.cerrarSession();
+	}
+    
+    public static void BorrowedBooks()
+	{
+		ConfigHibernate ch = new ConfigHibernate();
+		Session session= ch.abrirConexion();
+		
+        List<Object[]> librosPrestados = (List<Object[]>) session.createQuery("from Libro l "
+        		+ "INNER JOIN l.idBiblioteca b"
+        		+ " where b.estado = 2 ").list();
+        
+        
+        System.err.println("Libros:");
+          
+        /*Los campos que se deben mostrar son los siguientes: ISBN, Titulo, fecha de lanzamiento, idioma, cantidad de páginas, 
+         * autor (ID, Nombre, Apellido, Email, Nacionalidad(ID, Descripción)), descripción 
+         * y la lista de géneros (ID Genero, descripción) */
+        
+        
+        for (Object[] obj : librosPrestados) {
+
+        	  Libro libro = (Libro) obj[0];
+        	  Biblioteca biblioteca = (Biblioteca) obj[1];
+        	  
+        	  System.out.println(libro.toString() + ' ' + biblioteca.toString());
 		}
         
         ch.cerrarSession();

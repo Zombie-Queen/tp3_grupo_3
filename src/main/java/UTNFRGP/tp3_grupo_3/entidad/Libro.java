@@ -45,7 +45,6 @@ public class Libro implements Serializable {
     @JoinColumn(name = "idBiblioteca")
     private Biblioteca idBiblioteca;
    
-
 	@ManyToMany(cascade= (CascadeType.ALL))
 	@JoinTable(name="Libros_x_genero",joinColumns= {@JoinColumn(name="isbn")}, inverseJoinColumns= {@JoinColumn(name="idgenero")})
 	private Set<Genero> genero = new HashSet<Genero>();
@@ -141,6 +140,13 @@ public class Libro implements Serializable {
 		this.idBiblioteca = biblioteca;
 	}
 
+
+	@Override
+	public String toString() {
+		return "Libro [isbn=" + isbn + ", titulo=" + titulo + ", fechaLanzamiento=" + fechaLanzamiento + ", idioma="
+				+ idioma + ", cantidadPaginas=" + cantidadPaginas + ", descripcion=" + descripcion + ", idAutor="
+				+ idAutor + ", genero=" + genero + "]";
+	}
 
 
 

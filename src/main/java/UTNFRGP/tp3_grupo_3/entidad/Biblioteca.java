@@ -68,6 +68,6 @@ public class Biblioteca implements Serializable {
 
     @Override
 	public String toString() {
-		return "Biblioteca [id=" + id + ", fechaAlta=" + fechaAlta + ", estado=" + estado + "]";
+		return "Biblioteca [Id =" + id + ", fechaAlta=" + fechaAlta + ", estado=" + estado + "]";
 	}
 }
