@@ -1,5 +1,6 @@
 package UTNFRGP.tp3_grupo_3;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
@@ -126,6 +127,29 @@ public class App
     	daoHibernate.Add(genero3);
     	daoHibernate.Add(genero4);
     	daoHibernate.Add(genero5);
+    	
+    	Biblioteca biblioteca1 = new Biblioteca();    	
+    	Biblioteca biblioteca2 = new Biblioteca();    	
+    	Biblioteca biblioteca3 = new Biblioteca();    	
+    	Biblioteca biblioteca4 = new Biblioteca();    	
+    	Biblioteca biblioteca5 = new Biblioteca();    	
+
+    	biblioteca1.setEstado(1);
+    	biblioteca1.setFechaAlta("12/05/2020");
+    	biblioteca2.setEstado(2);
+    	biblioteca2.setFechaAlta("05/02/2023");
+    	biblioteca3.setEstado(2);
+    	biblioteca3.setFechaAlta("10/06/2019");
+    	biblioteca4.setEstado(1);
+    	biblioteca4.setFechaAlta("09/04/2018");
+    	biblioteca5.setEstado(2);
+    	biblioteca5.setFechaAlta("14/03/2015");
+    	
+    	daoHibernate.Add(biblioteca1);
+    	daoHibernate.Add(biblioteca2);
+    	daoHibernate.Add(biblioteca3);
+    	daoHibernate.Add(biblioteca4);
+    	daoHibernate.Add(biblioteca5);
 
 
        	Libro libro1 = new Libro();
@@ -142,6 +166,7 @@ public class App
        	libro1.setDescripcion("Duis semper elit magna, nec dapibus tellus sodales aliquam. Etiam.");
        	libro1.setIdAutor(autor1);
        	libro1.setGenero(listGenero1);
+       	libro1.setIdBiblioteca(biblioteca1);
        	
      	libro2.setIsbn("2");	
      	libro2.setTitulo("harry2");
@@ -151,6 +176,7 @@ public class App
      	libro2.setDescripcion("Pellentesque lacinia ante eget aliquet suscipit. Pellentesque et est consectetur.");
      	libro2.setIdAutor(autor2);
        	libro2.setGenero(listGenero2);
+       	libro2.setIdBiblioteca(biblioteca2);
 
      	libro3.setIsbn("3");	
        	libro3.setTitulo("harry3");
@@ -160,6 +186,7 @@ public class App
        	libro3.setDescripcion("Vivamus rhoncus suscipit ullamcorper. Phasellus justo arcu, vulputate at tincidunt.");
        	libro3.setIdAutor(autor3);
        	libro3.setGenero(listGenero3);
+       	libro3.setIdBiblioteca(biblioteca3);
        	
      	libro4.setIsbn("4");	
        	libro4.setTitulo("harry4");
@@ -169,6 +196,7 @@ public class App
        	libro4.setDescripcion("Maecenas at scelerisque ante. Morbi sollicitudin ipsum ut tortor mattis.");
        	libro4.setIdAutor(autor4);
        	libro4.setGenero(listGenero4);
+       	libro4.setIdBiblioteca(biblioteca4);
        	
      	libro5.setIsbn("5");	
        	libro5.setTitulo("harry5");
@@ -178,6 +206,7 @@ public class App
        	libro5.setDescripcion("Praesent luctus nisl lacus, at eleifend lorem pharetra dictum. Nulla.");
        	libro5.setIdAutor(autor5);
        	libro5.setGenero(listGenero5);
+       	libro5.setIdBiblioteca(biblioteca5);
        	
        	
     	daoHibernate.Add(libro1);
@@ -185,7 +214,7 @@ public class App
     	daoHibernate.Add(libro3);
     	daoHibernate.Add(libro4);
     	daoHibernate.Add(libro5);
-       	
+       	    	
     	
     }
 }

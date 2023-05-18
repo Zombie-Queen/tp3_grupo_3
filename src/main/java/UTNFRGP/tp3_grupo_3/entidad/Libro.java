@@ -40,14 +40,14 @@ public class Libro implements Serializable {
     @ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "idAutor")
     private Autor idAutor;
-    
+
+    @ManyToOne(cascade = {CascadeType.ALL})
+    @JoinColumn(name = "idBiblioteca")
+    private Biblioteca idBiblioteca;
+
 	@ManyToMany(cascade= {CascadeType.ALL})
 	@JoinTable(name="Libros_x_genero",joinColumns= {@JoinColumn(name="isbn")}, inverseJoinColumns= {@JoinColumn(name="idgenero")})
 	private Set<Genero> genero = new HashSet<Genero>();
-   
-    
-    @Column
-    private Biblioteca biblioteca;
 
     public String getIsbn() {
         return isbn;
@@ -106,14 +106,6 @@ public class Libro implements Serializable {
         this.descripcion = descripcion;
     }
 
-
-	public Biblioteca getBiblioteca() {
-        return biblioteca;
-    }
-
-    public void setBiblioteca(Biblioteca biblioteca) {
-        this.biblioteca = biblioteca;
-    }
     
 	public Libro() {
 
@@ -127,25 +119,24 @@ public class Libro implements Serializable {
 		this.genero = genero;
 	}
 
-	public Libro(String isbn, String titulo, String fechaLanzamiento, String idioma, String cantidadPaginas,
-			Autor idAutor, String descripcion, Set<Genero> genero, Biblioteca biblioteca) {
-		super();
-		this.isbn = isbn;
-		this.titulo = titulo;
-		this.fechaLanzamiento = fechaLanzamiento;
-		this.idioma = idioma;
-		this.cantidadPaginas = cantidadPaginas;
-		this.idAutor = idAutor;
-		this.descripcion = descripcion;
-		this.genero = genero;
-		this.biblioteca = biblioteca;
+	public Biblioteca getIdBiblioteca() {
+		return idBiblioteca;
 	}
 
+	public void setIdBiblioteca(Biblioteca idBiblioteca) {
+		this.idBiblioteca = idBiblioteca;
+	}
 
-
-
-
-
-
+    public Libro(String isbn, String titulo, String fechaLanzamiento, String idioma, String cantidadPaginas, String descripcion, Autor idAutor, Biblioteca idBiblioteca, Set<Genero> genero) {
+        this.isbn = isbn;
+        this.titulo = titulo;
+        this.fechaLanzamiento = fechaLanzamiento;
+        this.idioma = idioma;
+        this.cantidadPaginas = cantidadPaginas;
+        this.descripcion = descripcion;
+        this.idAutor = idAutor;
+        this.idBiblioteca = idBiblioteca;
+        this.genero = genero;
+    }
 
 }
