@@ -3,9 +3,7 @@
 
 /.idea
 
-src/main/java/dao/tp3_grupo_3.iml
-
-/src/main/java/hibernate.cfg.xml
+tp3_grupo_3.iml
 
 target/
 .settings
