@@ -41,7 +41,7 @@ public class Libro implements Serializable {
     @JoinColumn(name = "idAutor")
     private Autor idAutor;
     
-	@ManyToMany(cascade= (CascadeType.ALL))
+	@ManyToMany(cascade= {CascadeType.ALL})
 	@JoinTable(name="Libros_x_genero",joinColumns= {@JoinColumn(name="isbn")}, inverseJoinColumns= {@JoinColumn(name="idgenero")})
 	private Set<Genero> genero = new HashSet<Genero>();
    
