@@ -44,7 +44,7 @@ public class Libro implements Serializable {
     @ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "idBiblioteca")
     private Biblioteca idBiblioteca;
-   
+
 	@ManyToMany(cascade= (CascadeType.ALL))
 	@JoinTable(name="Libros_x_genero",joinColumns= {@JoinColumn(name="isbn")}, inverseJoinColumns= {@JoinColumn(name="idgenero")})
 	private Set<Genero> genero = new HashSet<Genero>();
@@ -105,6 +105,7 @@ public class Libro implements Serializable {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
+
     
 	public Libro() {
 
@@ -117,7 +118,7 @@ public class Libro implements Serializable {
 	public void setGenero(Set<Genero> genero) {
 		this.genero = genero;
 	}
-	
+
 	public Biblioteca getIdBiblioteca() {
 		return idBiblioteca;
 	}
@@ -126,32 +127,30 @@ public class Libro implements Serializable {
 		this.idBiblioteca = idBiblioteca;
 	}
 
-	public Libro(String isbn, String titulo, String fechaLanzamiento, String idioma, String cantidadPaginas,
-			Autor idAutor, String descripcion, Set<Genero> genero, Biblioteca biblioteca) {
-		super();
-		this.isbn = isbn;
-		this.titulo = titulo;
-		this.fechaLanzamiento = fechaLanzamiento;
-		this.idioma = idioma;
-		this.cantidadPaginas = cantidadPaginas;
-		this.idAutor = idAutor;
-		this.descripcion = descripcion;
-		this.genero = genero;
-		this.idBiblioteca = biblioteca;
-	}
+    public Libro(String isbn, String titulo, String fechaLanzamiento, String idioma, String cantidadPaginas, String descripcion, Autor idAutor, Biblioteca idBiblioteca, Set<Genero> genero) {
+        this.isbn = isbn;
+        this.titulo = titulo;
+        this.fechaLanzamiento = fechaLanzamiento;
+        this.idioma = idioma;
+        this.cantidadPaginas = cantidadPaginas;
+        this.descripcion = descripcion;
+        this.idAutor = idAutor;
+        this.idBiblioteca = idBiblioteca;
+        this.genero = genero;
+    }
 
-
-	@Override
-	public String toString() {
-		return "Libro [isbn=" + isbn + ", titulo=" + titulo + ", fechaLanzamiento=" + fechaLanzamiento + ", idioma="
-				+ idioma + ", cantidadPaginas=" + cantidadPaginas + ", descripcion=" + descripcion + ", idAutor="
-				+ idAutor + ", genero=" + genero + "]";
-	}
-
-
-
-
-
-
-
+    @Override
+    public String toString() {
+        return "Libro{" +
+                "isbn='" + isbn + '\'' +
+                ", titulo='" + titulo + '\'' +
+                ", fechaLanzamiento='" + fechaLanzamiento + '\'' +
+                ", idioma='" + idioma + '\'' +
+                ", cantidadPaginas='" + cantidadPaginas + '\'' +
+                ", descripcion='" + descripcion + '\'' +
+                ", idAutor=" + idAutor +
+                ", idBiblioteca=" + idBiblioteca +
+                ", genero=" + genero +
+                '}';
+    }
 }

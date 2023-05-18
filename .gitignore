@@ -1,0 +1,11 @@
+# Default ignored files
+/shelf/
+
+/.idea
+
+tp3_grupo_3.iml
+
+target/
+.settings
+.classpath
+.project

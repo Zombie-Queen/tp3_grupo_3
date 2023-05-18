@@ -29,10 +29,10 @@ public class App2
 	
     public static void main( String[] args )
     {
-
     	
-    	//OrderedBooksDesc();
+    	OrderedBooksDesc();
     	BorrowedBooks();
+		showBookWithIsbn();
     	
     }
     
@@ -99,5 +99,44 @@ public class App2
         ch.cerrarSession();
 	}
 
-    
+
+
+
+
+	public static void showAllAuthors()
+	{
+		ConfigHibernate ch = new ConfigHibernate();
+		Session session= ch.abrirConexion();
+
+		List<Object[]> listAuthorsAndNation = (List<Object[]>) session.createQuery("from Autor as a "
+				+ "INNER JOIN a.nacionalidad as n where n.descripcion = 'Argentina'").list();
+
+		System.err.println("Autores argentina:");
+
+		for (Object[] object : listAuthorsAndNation) {
+			Autor autor = (Autor) object[0];
+
+			System.out.println(autor);
+		}
+
+		ch.cerrarSession();
+	}
+
+	public static void showBookWithIsbn()
+	{
+		ConfigHibernate ch = new ConfigHibernate();
+		Session session= ch.abrirConexion();
+
+		List<Object[]> listAuthorsAndNation = (List<Object[]>) session.createQuery("from Libro as l "
+				+ "INNER JOIN l.genero as g where l.isbn = '12345'").list();
+
+		System.err.println("Autores argentina:");
+
+		for (Object object : listAuthorsAndNation.get(0)) {
+			System.out.println(object);
+			break;
+		}
+
+		ch.cerrarSession();
+	}
 }
