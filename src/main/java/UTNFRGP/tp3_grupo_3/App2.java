@@ -32,8 +32,8 @@ public class App2
     	
     	OrderedBooksDesc();
     	BorrowedBooks();
-		showBookWithIsbn();
-    	
+	showBookWithIsbn();
+    	showBookWithMaxIsbn();
     }
     
     public static void OrderedBooksDesc()
@@ -138,5 +138,17 @@ public class App2
 		}
 
 		ch.cerrarSession();
+	}
+	
+	public static void showBookWithMaxIsbn()
+	{
+	    ConfigHibernate ch = new ConfigHibernate();
+	    Session session= ch.abrirConexion();
+
+	    String maxIsbn = (String) session.createQuery("select max(l.isbn) from Libro as l").uniqueResult();
+
+	    System.out.println("El libro con el mayor ISBN es: " + maxIsbn);
+
+	    ch.cerrarSession();
 	}
 }
