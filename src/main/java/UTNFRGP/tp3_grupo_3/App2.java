@@ -138,6 +138,10 @@ public class App2
 		}
 
 		ch.cerrarSession();
+		
+		
+		
+		
 	}
 	
 	public static void showBookWithMaxIsbn()
@@ -150,5 +154,29 @@ public class App2
 	    System.out.println("El libro con el mayor ISBN es: " + maxIsbn);
 
 	    ch.cerrarSession();
+	
+				
 	}
+	
+	
+	public static void mostrarCantidadLibrosPorGenero()
+
+	{
+	ConfigHibernate ch = new ConfigHibernate();
+	Session session= ch.abrirConexion();
+
+	List<Object[]> listaCantidadPorGenero = (List<Object[]>) session.createQuery("SELECT G.IDGenero, G.Descripcion, COUNT(L) AS Cantidad FROM Genero G JOIN G.libros L GROUP BY G.IDGenero, G.Descripcion").list();
+
+    for (Object object : listaCantidadPorGenero.get(0)) {
+		System.out.println(object);
+		break;
+	}
+
+
+	ch.cerrarSession();
+
+    }
+	
+	
+	
 }
