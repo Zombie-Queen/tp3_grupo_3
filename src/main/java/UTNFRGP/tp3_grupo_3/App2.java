@@ -165,7 +165,7 @@ public class App2
 	ConfigHibernate ch = new ConfigHibernate();
 	Session session= ch.abrirConexion();
 
-	List<Object[]> listaCantidadPorGenero = (List<Object[]>) session.createQuery("SELECT G.IDGenero, G.Descripcion, COUNT(L) AS Cantidad FROM Genero G JOIN G.libros L GROUP BY G.IDGenero, G.Descripcion").list();
+	List<Object[]> listaCantidadPorGenero = (List<Object[]>) session.createQuery("SELECT G.IDGenero, G.Descripcion, COUNT(LXG.IDLibro) AS Cantidad FROM Generos G JOIN LibrosXGenero LXG ON G.IDGenero = LXG.IDGenero GROUP BY G.IDGenero, G.Descripcion; ").list();
 
     for (Object object : listaCantidadPorGenero.get(0)) {
 		System.out.println(object);
