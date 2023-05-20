@@ -34,6 +34,7 @@ public class App2
     	BorrowedBooks();
 	showBookWithIsbn();
     	showBookWithMaxIsbn();
+	mostrarCantidadLibrosPorGenero();    
     }
     
     public static void OrderedBooksDesc()
