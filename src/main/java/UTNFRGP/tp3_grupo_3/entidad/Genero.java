@@ -23,6 +23,9 @@ public class Genero implements Serializable {
 	@Column
 	private String descripción;
 	
+	@ManyToMany(mappedBy="genero")
+        private Set<Libro> libro = new HashSet<Libro>();
+	
 	
 	public Genero()
 	{
