@@ -34,7 +34,7 @@ public class App2
     	BorrowedBooks();
 	showBookWithIsbn();
     	showBookWithMaxIsbn();
-	mostrarCantidadLibrosPorGenero();    
+	showBookCountPerGenre();   
     }
     
     public static void OrderedBooksDesc()
@@ -160,21 +160,28 @@ public class App2
 	}
 	
 	
-	public static void mostrarCantidadLibrosPorGenero()
+	public static void showBookCountPerGenre() {
+ConfigHibernate ch = new ConfigHibernate();
+Session session = ch.abrirConexion();
 
-	{
-	ConfigHibernate ch = new ConfigHibernate();
-	Session session= ch.abrirConexion();
+List<Object[]> list = session.createQuery(
+"select g.idgenero, g.descripción, count(l.isbn) from Genero g " +
+"join g.libro l " +
+"group by g.idgenero, g.descripción"
+).list();
 
-	List<Object[]> listaCantidadPorGenero = (List<Object[]>) session.createQuery("SELECT G.IDGenero, G.Descripcion, COUNT(LXG.IDLibro) AS Cantidad FROM Generos G JOIN LibrosXGenero LXG ON G.IDGenero = LXG.IDGenero GROUP BY G.IDGenero, G.Descripcion; ").list();
+System.out.println("Cantidad de libros por género:");
 
-    for (Object object : listaCantidadPorGenero.get(0)) {
-		System.out.println(object);
-		break;
-	}
+for (Object[] result : list) {
+Integer idGenero = (Integer) result[0];
+String descripcion = (String) result[1];
+Long count = (Long) result[2];
 
+System.out.println("ID Género: " + idGenero + ", Descripción: " + descripcion + ", Cantidad: " + count);
+}
 
-	ch.cerrarSession();
+ch.cerrarSession();
+}
 
     }
 	
